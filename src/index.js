@@ -51,22 +51,19 @@ const displayRamens = () => {
   fetch("http://localhost:3000/ramens")
   .then(response => response.json())
   .then(ramens =>{
-    ramens.forEach(ramen=>{
-      const image = document.createElement("img");
-      image.src = ramen.image;
-      image.setAttribute("id", ramen.id)
-      document.querySelector("#ramen-menu").append(image);
-    })
-   handleClick(ramens[0]);
-   const image = document.getElementById("ramen-menu");
-   image.addEventListener("click", event =>{
     ramens.forEach(ramen =>{
-      if (ramen.id == event.target.id)
-      handleClick(ramen)
-    })
-   })
+      const img =document.createElement("img")
+      img.src=ramen.image;
+      img.addEventListener("click", ()=>{
+        handleClick(ramen)
+      })
+      document.querySelector("#ramen-menu").append(img)
+    }
+      )
+      handleClick(ramens[0])
+  })
+
 }
-  )}
 const main = () => {
   document.addEventListener("DOMContentLoaded", displayRamens())
   document.addEventListener("DOMContentLoaded", addSubmitListener())
